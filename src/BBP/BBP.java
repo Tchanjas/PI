@@ -1,4 +1,3 @@
-
 package BBP;
 
 import java.math.BigDecimal;
@@ -6,7 +5,7 @@ import java.math.MathContext;
 
 public class BBP {
     // Bailey–Borwein–Plouffe Formula in a sequencial execution
-    public static BigDecimal BBP(int iterations){
+    public BigDecimal BBP(int iterations){
         
         BigDecimal sum = BigDecimal.ZERO;
         MathContext context = new MathContext(1000);

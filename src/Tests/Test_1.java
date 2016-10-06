@@ -1,6 +1,6 @@
 package Tests;
 
-import static BBP.BBP.BBP;
+import BBP.*;
 import static Methods.Leibniz.Leibniz;
 import static Methods.MonteCarlo.MonteCarlo;
 import static Methods.Wallis.Wallis;
@@ -34,8 +34,9 @@ public class Test_1 {
         System.out.print(endTime - startTime + " ns");
         System.out.println("");
         
+        BBP piBBP = new BBP();
         startTime = System.nanoTime();
-        System.out.print("BBP: " + BBP(100)+ "\t\t\n | Execution Time: ");
+        System.out.print("BBP: " + piBBP.BBP(1000)+ "\t\t\n | Execution Time: ");
         endTime = System.nanoTime();
         System.out.print(endTime - startTime + " ns");
         System.out.println("");
