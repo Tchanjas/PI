@@ -23,5 +23,8 @@ public class Test_2 {
         endTime = System.currentTimeMillis();
         System.out.println(endTime - startTime + " ms");
 
+        Chudnovski n = new Chudnovski();
+        n.calcPI(10);
+        
     }
 }
