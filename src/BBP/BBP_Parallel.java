@@ -1,6 +1,6 @@
 package BBP;
 
-import BBP.SharedBigDecimal;
+import Utilities.SharedBigDecimal;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.concurrent.atomic.AtomicInteger;

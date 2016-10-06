@@ -7,6 +7,7 @@ import static Methods.Wallis.Wallis;
 
 public class Test_1 {
     
+    // Sequential methods test
     public static void main(String[] args) {
         System.out.println("--- Different methods to calculate PI ---");
         

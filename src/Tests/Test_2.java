@@ -5,6 +5,7 @@ import BBP.*;
 
 public class Test_2 {
 
+    // BBP sequential vs parallel
     public static void main(String[] args) {
 
         System.out.println("--- BBP Methods ---");
