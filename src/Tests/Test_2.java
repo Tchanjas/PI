@@ -1,6 +1,5 @@
 package Tests;
 
-import Chudnovski.Chudnovski;
 import BBP.*;
 
 public class Test_2 {
@@ -24,9 +23,5 @@ public class Test_2 {
         System.out.print("BBP: " + piPara.calcPi() + "\t\t\n | Execution Time: ");
         endTime = System.currentTimeMillis();
         System.out.println(endTime - startTime + " ms");
-
-        Chudnovski n = new Chudnovski();
-        n.calcPI(10);
-        
     }
 }

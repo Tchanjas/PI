@@ -46,10 +46,10 @@ public class Chudnovski {
             num = first.multiply(second,context).multiply(third,context);
             denum = fourth.multiply(fifth,context).multiply(sixth,context);
             
-            result = result.add((num.divide(denum,context)).pow(-1, context));
+            result = result.add(num.divide(denum,context));
         }
         
-        result = result.divide(TWELVE, context);
+        result = result.pow(-1, context).divide(TWELVE, context);
         System.out.println(result);
     }
 
