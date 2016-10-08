@@ -1,5 +1,6 @@
 package Tests;
 
+import Chudnovski.Chudnosvky_Parallel;
 import Chudnovski.Chudnovski;
 
 public class Test_4 {
@@ -8,9 +9,22 @@ public class Test_4 {
     public static void main(String[] args) {
 
         System.out.println("--- Chudnovski Algorithm ---");
-
-        Chudnovski sequen = new Chudnovski();
-        sequen.calcPI(15);
         
+        Chudnovski chud = new Chudnovski();
+        Chudnosvky_Parallel chudp = new Chudnosvky_Parallel();
+
+        long timeStampStart = System.currentTimeMillis();
+        chud.calcPI(100, 1000);
+        long timeStampStop = System.currentTimeMillis();
+        long time = timeStampStop-timeStampStart;
+        System.out.println("Tempo : " + time + " ms");
+        
+        System.out.println("--- Chudnovski Algorithm Parallel---");
+        
+        timeStampStart = System.currentTimeMillis();
+        chudp.calcPi();
+        timeStampStop = System.currentTimeMillis();
+        time = timeStampStop-timeStampStart;
+        System.out.print("Tempo : " + time + " ms\n");
     }
 }
