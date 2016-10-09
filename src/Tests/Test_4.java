@@ -13,18 +13,22 @@ public class Test_4 {
         Chudnovski chud = new Chudnovski();
         Chudnosvky_Parallel chudp = new Chudnosvky_Parallel();
 
-        long timeStampStart = System.currentTimeMillis();
+        double timeStampStart = System.currentTimeMillis();
         chud.calcPI(1000, 1000);
-        long timeStampStop = System.currentTimeMillis();
-        long time = timeStampStop-timeStampStart;
-        System.out.println("Tempo : " + time + " ms");
+        double timeStampStop = System.currentTimeMillis();
+        double timeSeq = timeStampStop-timeStampStart;
+        System.out.println("Time : " + timeSeq + " ms");
         
         System.out.println("--- Chudnovski Algorithm Parallel---");
         
         timeStampStart = System.currentTimeMillis();
         chudp.calcPi();
         timeStampStop = System.currentTimeMillis();
-        time = timeStampStop-timeStampStart;
-        System.out.print("Tempo : " + time + " ms\n");
+        double timePara = timeStampStop-timeStampStart;
+        System.out.println("Time : " + timePara + " ms");
+        
+        System.out.println("--- Speedup ---");
+        double speedup = timeSeq / timePara;
+        System.out.println("Value: " + speedup);
     }
 }

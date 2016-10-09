@@ -78,15 +78,14 @@ public class Chudnosvky_Parallel extends Thread {
             arrThr[i].start();
         }
 
-        for (Chudnosvky_Parallel arrThr1 : arrThr) {
+        for (Chudnosvky_Parallel thread : arrThr) {
             try {
-                arrThr1.join();
+                thread.join();
             }catch (InterruptedException e) {
                 System.out.println(e.getMessage());
             }
         }
         result.setSharedValue(result.getSharedValue().pow(-1, context).divide(TWELVE, context));
-        System.out.println("----------------------------------------------------");
         System.out.println(result.getVal());
         return result.getVal();
     }
