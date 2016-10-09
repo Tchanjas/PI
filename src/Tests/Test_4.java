@@ -14,7 +14,7 @@ public class Test_4 {
         Chudnosvky_Parallel chudp = new Chudnosvky_Parallel();
 
         long timeStampStart = System.currentTimeMillis();
-        chud.calcPI(100, 1000);
+        chud.calcPI(1000, 1000);
         long timeStampStop = System.currentTimeMillis();
         long time = timeStampStop-timeStampStart;
         System.out.println("Tempo : " + time + " ms");
