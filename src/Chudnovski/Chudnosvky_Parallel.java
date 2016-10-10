@@ -17,12 +17,11 @@ public class Chudnosvky_Parallel extends Thread {
 
     BigDecimal CONST1 = BigDecimal.valueOf(13591409);
     BigDecimal CONST2 = BigDecimal.valueOf(545140134);
-    BigDecimal CONST3 = BigDecimal.valueOf(640320);
+    BigDecimal CONST3 = BigDecimal.valueOf(-640320);
     BigDecimal CONST4 = sqrt(BigDecimal.valueOf(640320).pow(3), 1000);
 
     BigDecimal SIX = BigDecimal.valueOf(6);
     BigDecimal THREE = BigDecimal.valueOf(3);
-    BigDecimal MONE = BigDecimal.valueOf(-1);
     BigDecimal TWELVE = BigDecimal.valueOf(12);
 
     BigDecimal first;
@@ -30,7 +29,6 @@ public class Chudnosvky_Parallel extends Thread {
     BigDecimal third;
     BigDecimal fourth;
     BigDecimal fifth;
-    BigDecimal sixth;
 
     BigDecimal num;
     BigDecimal denum;
@@ -45,16 +43,15 @@ public class Chudnosvky_Parallel extends Thread {
         while (next.get() != iterations.get()) {
             k = next.getAndIncrement();
 
-            first = MONE.pow(k, context);
-            second = sharedFact_1.calc(SIX.multiply(BigDecimal.valueOf(k), context));
-            third = CONST1.add(CONST2.multiply(BigDecimal.valueOf(k), context));
+            first = sharedFact_1.calc(SIX.multiply(BigDecimal.valueOf(k), context));
+            second = CONST1.add(CONST2.multiply(BigDecimal.valueOf(k), context));
 
-            fourth = sharedFact_2.calc(THREE.multiply(BigDecimal.valueOf(k), context));
-            fifth = sharedFact_3.calc(BigDecimal.valueOf(k)).pow(3);
-            sixth = CONST3.pow(3 * k).multiply(CONST4, context);
+            third = sharedFact_2.calc(THREE.multiply(BigDecimal.valueOf(k), context));
+            fourth = sharedFact_3.calc(BigDecimal.valueOf(k)).pow(3);
+            fifth = CONST3.pow(3 * k).multiply(CONST4, context);
 
-            num = first.multiply(second, context).multiply(third, context);
-            denum = fourth.multiply(fifth, context).multiply(sixth, context);
+            num = first.multiply(second, context);
+            denum = third.multiply(fourth, context).multiply(fifth, context);
 
             result.add(num.divide(denum, context));
             
