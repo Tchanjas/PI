@@ -20,9 +20,6 @@ public class Chudnovski {
     BigDecimal MONE = BigDecimal.valueOf(-1);
     BigDecimal TWELVE = BigDecimal.valueOf(12);
 
-    BigDecimal factAux = BigDecimal.ONE;
-    BigDecimal factAux2 = BigDecimal.ONE;
-
     BigDecimal first;
     BigDecimal second;
     BigDecimal third;
@@ -37,13 +34,16 @@ public class Chudnovski {
 
     public void calcPI(int iter, int precision) {
         context = new MathContext(precision);
+        SharedFactorial sharedFact_1 = new SharedFactorial();
+        SharedFactorial sharedFact_2 = new SharedFactorial();
+        SharedFactorial sharedFact_3 = new SharedFactorial();
         for (int i = 0; i < iter; i++) {
             first = MONE.pow(i, context);
-            second = fact(SIX.multiply(BigDecimal.valueOf(i), context));
+            second = sharedFact_1.calc(SIX.multiply(BigDecimal.valueOf(i), context), SIX);
             third = CONST1.add(CONST2.multiply(BigDecimal.valueOf(i), context));
 
-            fourth = fact(THREE.multiply(BigDecimal.valueOf(i), context));
-            fifth = fact(BigDecimal.valueOf(i)).pow(3);
+            fourth = sharedFact_2.calc(THREE.multiply(BigDecimal.valueOf(i), context), THREE);
+            fifth = sharedFact_3.calc(BigDecimal.valueOf(i), BigDecimal.ONE).pow(3);
             sixth = CONST3.pow(3 * i).multiply(CONST4, context);
 
             num = first.multiply(second, context).multiply(third, context);
@@ -54,14 +54,6 @@ public class Chudnovski {
 
         result = result.pow(-1, context).divide(TWELVE, context);
         System.out.println(result);
-    }
-
-    public static BigDecimal fact(BigDecimal val) {
-        BigDecimal newVal = BigDecimal.ONE;
-        for (int i = 1; i <= val.intValue(); i++) {
-            newVal = newVal.multiply(BigDecimal.valueOf(i));
-        }
-        return newVal;
     }
 
     public static BigDecimal sqrt(BigDecimal val, int precision) {

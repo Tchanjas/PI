@@ -1,8 +1,8 @@
 package Chudnovski;
 
-import static Chudnovski.Chudnovski.fact;
 import static Chudnovski.Chudnovski.sqrt;
 import Utilities.SharedBigDecimal;
+import Utilities.SharedFactorial;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -34,6 +34,10 @@ public class Chudnosvky_Parallel extends Thread {
     BigDecimal denum;
 
     MathContext context;
+    
+    SharedFactorial sharedFact_1 = new SharedFactorial();
+    SharedFactorial sharedFact_2 = new SharedFactorial();
+    SharedFactorial sharedFact_3 = new SharedFactorial();
 
     public Chudnosvky_Parallel() {
         context = new MathContext(1000);
@@ -46,11 +50,11 @@ public class Chudnosvky_Parallel extends Thread {
             k = next.getAndIncrement();
 
             first = MONE.pow(k, context);
-            second = fact(SIX.multiply(BigDecimal.valueOf(k), context));
+            second = sharedFact_1.calc(SIX.multiply(BigDecimal.valueOf(k), context), SIX);
             third = CONST1.add(CONST2.multiply(BigDecimal.valueOf(k), context));
 
-            fourth = fact(THREE.multiply(BigDecimal.valueOf(k), context));
-            fifth = fact(BigDecimal.valueOf(k)).pow(3);
+            fourth = sharedFact_2.calc(THREE.multiply(BigDecimal.valueOf(k), context), THREE);
+            fifth = sharedFact_3.calc(BigDecimal.valueOf(k), BigDecimal.ONE).pow(3);
             sixth = CONST3.pow(3 * k).multiply(CONST4, context);
 
             num = first.multiply(second, context).multiply(third, context);
@@ -80,5 +84,4 @@ public class Chudnosvky_Parallel extends Thread {
         System.out.println(result.getValue());
         return result.getValue();
     }
-
 }
