@@ -50,11 +50,11 @@ public class Chudnosvky_Parallel extends Thread {
             k = next.getAndIncrement();
 
             first = MONE.pow(k, context);
-            second = sharedFact_1.calc(SIX.multiply(BigDecimal.valueOf(k), context), SIX);
+            second = sharedFact_1.calc(SIX.multiply(BigDecimal.valueOf(k), context));
             third = CONST1.add(CONST2.multiply(BigDecimal.valueOf(k), context));
 
-            fourth = sharedFact_2.calc(THREE.multiply(BigDecimal.valueOf(k), context), THREE);
-            fifth = sharedFact_3.calc(BigDecimal.valueOf(k), BigDecimal.ONE).pow(3);
+            fourth = sharedFact_2.calc(THREE.multiply(BigDecimal.valueOf(k), context));
+            fifth = sharedFact_3.calc(BigDecimal.valueOf(k)).pow(3);
             sixth = CONST3.pow(3 * k).multiply(CONST4, context);
 
             num = first.multiply(second, context).multiply(third, context);

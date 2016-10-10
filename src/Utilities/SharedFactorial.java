@@ -19,16 +19,17 @@ public class SharedFactorial {
     };
 
     // Recursive factorial method that checks first if the hashmap has the
-    //  (n-1) factorial element of a n factorial, and multiplies it by n
-    //  if it founds it
+    //  (n-1)! of the n!, and multiplies it by n if it does
     // This allows us to reduce the computation time
-    public BigDecimal calc(BigDecimal number, BigDecimal x) {
+    public BigDecimal calc(BigDecimal number) {
         if (number.equals(BigDecimal.ONE) || number.equals(BigDecimal.ZERO)) {
             return BigDecimal.ONE;
-        } else if (lhm.get(number.subtract(x)) != null) {
-            return number.multiply((BigDecimal) lhm.get(number.subtract(x)));
+        } else if (lhm.get(number.subtract(BigDecimal.ONE)) != null) {
+            BigDecimal result = number.multiply((BigDecimal) lhm.get(number.subtract(BigDecimal.ONE)));
+            lhm.put(number, result);
+            return result;
         } else {
-            BigDecimal result = number.multiply(calc(number.subtract(BigDecimal.ONE), BigDecimal.ONE));
+            BigDecimal result = number.multiply(calc(number.subtract(BigDecimal.ONE)));
             lhm.put(number, result);
             return result;
         }

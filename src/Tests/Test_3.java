@@ -20,7 +20,7 @@ public class Test_3 {
         
         startTime = System.currentTimeMillis();
         for (BigDecimal i = BigDecimal.ZERO; i.compareTo(new BigDecimal(1000)) <= 0; i = i.add(BigDecimal.ONE)) {
-            factorialHash.calc(i, BigDecimal.ONE);
+            factorialHash.calc(i);
         }
         endTime = System.currentTimeMillis();
         System.out.println(endTime - startTime + " ms");

@@ -39,11 +39,11 @@ public class Chudnovski {
         SharedFactorial sharedFact_3 = new SharedFactorial();
         for (int i = 0; i < iter; i++) {
             first = MONE.pow(i, context);
-            second = sharedFact_1.calc(SIX.multiply(BigDecimal.valueOf(i), context), SIX);
+            second = sharedFact_1.calc(SIX.multiply(BigDecimal.valueOf(i), context));
             third = CONST1.add(CONST2.multiply(BigDecimal.valueOf(i), context));
 
-            fourth = sharedFact_2.calc(THREE.multiply(BigDecimal.valueOf(i), context), THREE);
-            fifth = sharedFact_3.calc(BigDecimal.valueOf(i), BigDecimal.ONE).pow(3);
+            fourth = sharedFact_2.calc(THREE.multiply(BigDecimal.valueOf(i), context));
+            fifth = sharedFact_3.calc(BigDecimal.valueOf(i)).pow(3);
             sixth = CONST3.pow(3 * i).multiply(CONST4, context);
 
             num = first.multiply(second, context).multiply(third, context);
