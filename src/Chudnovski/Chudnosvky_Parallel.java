@@ -8,8 +8,10 @@ import java.math.MathContext;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Chudnosvky_Parallel extends Thread {
-
-    static AtomicInteger iterations = new AtomicInteger(1000);
+    
+    static MathContext context;
+    static AtomicInteger iterations;
+    
     static SharedBigDecimal result = new SharedBigDecimal(0.0);
     static AtomicInteger next = new AtomicInteger(0);
 
@@ -33,15 +35,9 @@ public class Chudnosvky_Parallel extends Thread {
     BigDecimal num;
     BigDecimal denum;
 
-    MathContext context;
-    
     SharedFactorial sharedFact_1 = new SharedFactorial();
     SharedFactorial sharedFact_2 = new SharedFactorial();
     SharedFactorial sharedFact_3 = new SharedFactorial();
-
-    public Chudnosvky_Parallel() {
-        context = new MathContext(1000);
-    }
 
     @Override
     public void run() {
@@ -65,7 +61,9 @@ public class Chudnosvky_Parallel extends Thread {
         }
     }
 
-    public BigDecimal calcPi() {
+    public void calcPi(int iterations, int precision) {
+        this.iterations = new AtomicInteger(iterations);
+        this.context = new MathContext(precision);
         int procs = Runtime.getRuntime().availableProcessors();
         Chudnosvky_Parallel[] arrThr = new Chudnosvky_Parallel[procs];
         for (int i = 0; i < arrThr.length; i++) {
@@ -82,6 +80,5 @@ public class Chudnosvky_Parallel extends Thread {
         }
         result.setSharedValue(result.getValue().pow(-1, context).divide(TWELVE, context));
         System.out.println(result.getValue());
-        return result.getValue();
     }
 }
