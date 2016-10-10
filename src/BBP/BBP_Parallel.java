@@ -61,6 +61,6 @@ public class BBP_Parallel extends Thread {
             }
         }
 
-        return result.getVal();
+        return result.getValue();
     }
 }

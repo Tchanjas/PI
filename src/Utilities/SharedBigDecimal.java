@@ -14,18 +14,7 @@ public class SharedBigDecimal {
     public synchronized void add(BigDecimal value){
         sharedValue = sharedValue.add(value);
     }
-
-    public synchronized BigDecimal getVal(){
-        return sharedValue;
-    }
-
-    public synchronized BigDecimal getSharedValue() {
-        return sharedValue;
-    }
-
     public synchronized void setSharedValue(BigDecimal sharedValue) {
         this.sharedValue = sharedValue;
     }
-    
-    
 }

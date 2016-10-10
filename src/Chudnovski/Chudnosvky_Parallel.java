@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Chudnovski;
 
 import static Chudnovski.Chudnovski.fact;
@@ -12,10 +7,6 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.concurrent.atomic.AtomicInteger;
 
-/**
- *
- * @author Clara
- */
 public class Chudnosvky_Parallel extends Thread {
 
     static AtomicInteger iterations = new AtomicInteger(1000);
@@ -85,9 +76,9 @@ public class Chudnosvky_Parallel extends Thread {
                 System.out.println(e.getMessage());
             }
         }
-        result.setSharedValue(result.getSharedValue().pow(-1, context).divide(TWELVE, context));
-        System.out.println(result.getVal());
-        return result.getVal();
+        result.setSharedValue(result.getValue().pow(-1, context).divide(TWELVE, context));
+        System.out.println(result.getValue());
+        return result.getValue();
     }
 
 }
