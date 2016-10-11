@@ -178,21 +178,22 @@ public class UI extends javax.swing.JFrame {
             precision = Integer.parseInt(txtPrec.getText());
             String endText = "";
             if (chkSeq.isSelected()) {
+                sumSeq = 0;
                 for (int i = 0; i < runs; i++) {
                     Chudnovski chud = new Chudnovski();
-                    txtResult.setText(txtResult.getText() + "----- Chudnovsky Sequencial -----");
+                    txtResult.setText(txtResult.getText() + "\n----- Chudnovsky Sequencial -----");
                     timeStampStart = System.currentTimeMillis();
                     txtResult.setText(txtResult.getText() + "\n Valor: " + chud.calcPI(iterations, precision).toString());
                     timeStampStop = System.currentTimeMillis();
 
                     time = timeStampStop - timeStampStart;
-                    txtResult.setText(txtResult.getText() + "\n Tempo:" + time + "ms\n");
+                    txtResult.setText(txtResult.getText() + "\n Tempo: " + time + "ms\n");
                     sumSeq += time;
                 }
                 endText = endText + "Média Sequencial: " + (sumSeq / runs) + " ms\n";
-                sumSeq = 0;
             }
             if (chkPara.isSelected()) {
+                sumPara = 0;
                 for (int i = 0; i < runs; i++) {
                     Chudnosvky_Parallel chudp = new Chudnosvky_Parallel();
                     txtResult.setText(txtResult.getText() + "\n----- Chudnovsky Paralelo -----");
@@ -201,11 +202,13 @@ public class UI extends javax.swing.JFrame {
                     timeStampStop = System.currentTimeMillis();
 
                     time = timeStampStop - timeStampStart;
-                    txtResult.setText(txtResult.getText() + "\n Tempo:" + time + "ms\n");
+                    txtResult.setText(txtResult.getText() + "\n Tempo: " + time + "ms\n");
                     sumPara += time;
                 }
                 endText = endText + "Média Paralelo: " + (sumPara / runs) + " ms\n";
-                sumPara = 0;
+            }
+            if(chkSeq.isSelected() && chkPara.isSelected()) {
+                endText = endText + "Speedup: " + ((sumSeq / runs)/(sumPara / runs)) + " \n";
             }
             if (!chkSeq.isSelected() && !chkPara.isSelected()) {
                 txtResult.setText("Por favor selecione uma das opções");
