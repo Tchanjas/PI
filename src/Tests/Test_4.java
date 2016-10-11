@@ -9,24 +9,24 @@ public class Test_4 {
     public static void main(String[] args) {
 
         System.out.println("--- Chudnovski Algorithm ---");
-        
+
         Chudnovski chud = new Chudnovski();
         Chudnosvky_Parallel chudp = new Chudnosvky_Parallel();
 
         double timeStampStart = System.currentTimeMillis();
         chud.calcPI(1000, 1000);
         double timeStampStop = System.currentTimeMillis();
-        double timeSeq = timeStampStop-timeStampStart;
+        double timeSeq = timeStampStop - timeStampStart;
         System.out.println("Time : " + timeSeq + " ms");
-        
+
         System.out.println("--- Chudnovski Algorithm Parallel---");
-        
+
         timeStampStart = System.currentTimeMillis();
-        chudp.calcPi(10,10);
+        chudp.calcPi(1000, 1000);
         timeStampStop = System.currentTimeMillis();
-        double timePara = timeStampStop-timeStampStart;
+        double timePara = timeStampStop - timeStampStart;
         System.out.println("Time : " + timePara + " ms");
-        
+
         System.out.println("--- Speedup ---");
         double speedup = timeSeq / timePara;
         System.out.println("Value: " + speedup);
