@@ -1,6 +1,6 @@
 package Chudnovski;
 
-import static Chudnovski.Chudnovski.sqrt;
+import Utilities.Maths;
 import Utilities.SharedBigDecimal;
 import Utilities.SharedFactorial;
 import java.math.BigDecimal;
@@ -14,11 +14,12 @@ public class Chudnosvky_Parallel extends Thread {
 
     static SharedBigDecimal result;
     static AtomicInteger next;
-
+    static int sqrtPrec;
+    
     BigDecimal CONST1 = BigDecimal.valueOf(13591409);
     BigDecimal CONST2 = BigDecimal.valueOf(545140134);
     BigDecimal CONST3 = BigDecimal.valueOf(-640320);
-    BigDecimal CONST4 = sqrt(BigDecimal.valueOf(640320).pow(3), 1000);
+    BigDecimal CONST4 = Maths.sqrt(BigDecimal.valueOf(640320).pow(3), sqrtPrec);
 
     BigDecimal SIX = BigDecimal.valueOf(6);
     BigDecimal THREE = BigDecimal.valueOf(3);
@@ -60,6 +61,7 @@ public class Chudnosvky_Parallel extends Thread {
     public BigDecimal calcPi(int iterations, int precision) {
         next = new AtomicInteger(0);
         result = new SharedBigDecimal(0.0);
+        sqrtPrec = precision;
         this.iterations = new AtomicInteger(iterations);
         this.context = new MathContext(precision);
         int procs = Runtime.getRuntime().availableProcessors();
@@ -79,4 +81,5 @@ public class Chudnosvky_Parallel extends Thread {
         result.setSharedValue(result.getValue().pow(-1, context).divide(TWELVE, context));
         return result.getValue();
     }
+
 }

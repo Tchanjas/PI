@@ -1,19 +1,21 @@
 package Chudnovski;
 
+import Utilities.Maths;
 import Utilities.SharedFactorial;
 import java.math.BigDecimal;
 import java.math.MathContext;
-import java.math.RoundingMode;
+
 
 public class Chudnovski {
     
     MathContext context;
-
+    static int sqrtPrec;
+    
     BigDecimal CONST1 = BigDecimal.valueOf(13591409);
     BigDecimal CONST2 = BigDecimal.valueOf(545140134);
     BigDecimal CONST3 = BigDecimal.valueOf(640320);
 
-    BigDecimal CONST4 = sqrt(BigDecimal.valueOf(640320).pow(3), 1000);
+    BigDecimal CONST4 = Maths.sqrt(BigDecimal.valueOf(640320).pow(3), sqrtPrec);
 
     BigDecimal SIX = BigDecimal.valueOf(6);
     BigDecimal THREE = BigDecimal.valueOf(3);
@@ -34,6 +36,7 @@ public class Chudnovski {
 
     public BigDecimal calcPI(int iter, int precision) {
         context = new MathContext(precision);
+        sqrtPrec = precision;
         SharedFactorial sharedFact_1 = new SharedFactorial();
         SharedFactorial sharedFact_2 = new SharedFactorial();
         SharedFactorial sharedFact_3 = new SharedFactorial();
@@ -53,20 +56,7 @@ public class Chudnovski {
         }
 
         result = result.pow(-1, context).divide(TWELVE, context);
-        //System.out.println(result);
         return result;
-    }
-
-    public static BigDecimal sqrt(BigDecimal val, int precision) {
-        BigDecimal a = BigDecimal.ZERO;
-        BigDecimal b = new BigDecimal(Math.sqrt(val.doubleValue()));
-        while (!a.equals(b)) {
-            a = b;
-            b = val.divide(a, precision, RoundingMode.HALF_UP);
-            b = b.add(a);
-            b = b.divide(BigDecimal.valueOf(2), precision, RoundingMode.HALF_UP);
-        }
-        return b;
     }
 
 }
