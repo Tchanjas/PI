@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package UI;
 
 import Chudnovski.Chudnosvky_Parallel;
 import Chudnovski.Chudnovski;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Bruno
- */
 public class UI extends javax.swing.JFrame {
 
     int iterations;
@@ -181,48 +172,15 @@ public class UI extends javax.swing.JFrame {
         // TODO add your handling code here:
         txtResult.setText("");
         try {
+            txtResult.setText("Carregando...\n");
             runs = Integer.parseInt(JOptionPane.showInputDialog(null, "Numero de repetições: ", "Repetições", 1));
             iterations = Integer.parseInt(txtIter.getText());
             precision = Integer.parseInt(txtPrec.getText());
-
-            if (chkSeq.isSelected() && chkPara.isSelected()) {
-
-                Chudnovski chud;
-                Chudnosvky_Parallel chudp;
-
+            String endText = "";
+            if (chkSeq.isSelected()) {
                 for (int i = 0; i < runs; i++) {
-
-                    chud = new Chudnovski();
-                    chudp = new Chudnosvky_Parallel();
-
-                    txtResult.setText(txtResult.getText() + "----- Chudnovsky Sequencial -----\n");
-                    timeStampStart = System.currentTimeMillis();
-                    txtResult.setText(txtResult.getText() + "Valor: " + chud.calcPI(iterations, precision).toString());
-                    timeStampStop = System.currentTimeMillis();
-
-                    time = timeStampStop - timeStampStart;
-                    txtResult.setText(txtResult.getText() + "\nTempo:" + time + "ms\n");
-                    sumSeq += time;
-
-                    txtResult.setText(txtResult.getText() + "\n----- Chudnovsky Paralelo -----\n");
-                    timeStampStart = System.currentTimeMillis();
-                    txtResult.setText(txtResult.getText() + "Valor: " + chudp.calcPi(iterations, precision).toString());
-                    timeStampStop = System.currentTimeMillis();
-
-                    time = timeStampStop - timeStampStart;
-                    txtResult.setText(txtResult.getText() + "\nTempo: " + time + "ms\n");
-                    sumPara += time;
-
-                }
-                txtResult.setText(txtResult.getText() + "-------------------------------------------------------\n");
-                txtResult.setText(txtResult.getText() + "Média Sequencial: " + (sumSeq / runs) + " ms" + "\nMédia Paralelo: " + (sumPara / runs) + "ms\nSpeedup: "+ ((sumSeq / runs)/(sumPara / runs)));
-                sumSeq = 0;
-                sumPara = 0;
-            } else if (chkSeq.isSelected() && !chkPara.isSelected()) {
-
-                Chudnovski chud = new Chudnovski();
-                for (int i = 0; i < runs; i++) {
-                    txtResult.setText("----- Chudnovsky Sequencial -----");
+                    Chudnovski chud = new Chudnovski();
+                    txtResult.setText(txtResult.getText() + "----- Chudnovsky Sequencial -----");
                     timeStampStart = System.currentTimeMillis();
                     txtResult.setText(txtResult.getText() + "\n Valor: " + chud.calcPI(iterations, precision).toString());
                     timeStampStop = System.currentTimeMillis();
@@ -230,16 +188,14 @@ public class UI extends javax.swing.JFrame {
                     time = timeStampStop - timeStampStart;
                     txtResult.setText(txtResult.getText() + "\n Tempo:" + time + "ms\n");
                     sumSeq += time;
-
                 }
-                txtResult.setText(txtResult.getText() + "\n-------------------------------------------------------\n");
-                txtResult.setText(txtResult.getText() + "Média Sequencial: " + (sumSeq / runs) + " ms\n");
+                endText = endText + "Média Sequencial: " + (sumSeq / runs) + " ms\n";
                 sumSeq = 0;
-            } else if (!chkSeq.isSelected() && chkPara.isSelected()) {
-
-                Chudnosvky_Parallel chudp = new Chudnosvky_Parallel();
+            }
+            if (chkPara.isSelected()) {
                 for (int i = 0; i < runs; i++) {
-                    txtResult.setText("----- Chudnovsky Paralelo -----");
+                    Chudnosvky_Parallel chudp = new Chudnosvky_Parallel();
+                    txtResult.setText(txtResult.getText() + "\n----- Chudnovsky Paralelo -----");
                     timeStampStart = System.currentTimeMillis();
                     txtResult.setText(txtResult.getText() + "\n Valor: " + chudp.calcPi(iterations, precision).toString());
                     timeStampStop = System.currentTimeMillis();
@@ -248,11 +204,14 @@ public class UI extends javax.swing.JFrame {
                     txtResult.setText(txtResult.getText() + "\n Tempo:" + time + "ms\n");
                     sumPara += time;
                 }
-                txtResult.setText(txtResult.getText() + "\n-------------------------------------------------------\n");
-                txtResult.setText(txtResult.getText() + "Média Paralelo: " + (sumPara / runs) + " ms\n");
+                endText = endText + "Média Paralelo: " + (sumPara / runs) + " ms\n";
                 sumPara = 0;
-            } else {
+            }
+            if (!chkSeq.isSelected() && !chkPara.isSelected()) {
                 txtResult.setText("Por favor selecione uma das opções");
+            } else {
+                txtResult.setText(txtResult.getText() + "\n-------------------------------------------------------\n"
+                        + endText);
             }
         } catch (Exception e) {
             txtResult.setText("Os valores introduzidos não estão correctos");
