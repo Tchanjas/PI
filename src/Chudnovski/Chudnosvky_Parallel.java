@@ -58,7 +58,7 @@ public class Chudnosvky_Parallel extends Thread {
         }
     }
 
-    public void calcPi(int iterations, int precision) {
+    public BigDecimal calcPi(int iterations, int precision) {
         this.iterations = new AtomicInteger(iterations);
         this.context = new MathContext(precision);
         int procs = Runtime.getRuntime().availableProcessors();
@@ -76,6 +76,7 @@ public class Chudnosvky_Parallel extends Thread {
             }
         }
         result.setSharedValue(result.getValue().pow(-1, context).divide(TWELVE, context));
-        System.out.println(result.getValue());
+        //System.out.println(result.getValue());
+        return result.getValue();
     }
 }

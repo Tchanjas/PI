@@ -22,7 +22,7 @@ public class Test_4 {
         System.out.println("--- Chudnovski Algorithm Parallel---");
         
         timeStampStart = System.currentTimeMillis();
-        chudp.calcPi(1000,1000);
+        chudp.calcPi(10,10);
         timeStampStop = System.currentTimeMillis();
         double timePara = timeStampStop-timeStampStart;
         System.out.println("Time : " + timePara + " ms");

@@ -32,7 +32,7 @@ public class Chudnovski {
 
     BigDecimal result = BigDecimal.ZERO;
 
-    public void calcPI(int iter, int precision) {
+    public BigDecimal calcPI(int iter, int precision) {
         context = new MathContext(precision);
         SharedFactorial sharedFact_1 = new SharedFactorial();
         SharedFactorial sharedFact_2 = new SharedFactorial();
@@ -53,7 +53,8 @@ public class Chudnovski {
         }
 
         result = result.pow(-1, context).divide(TWELVE, context);
-        System.out.println(result);
+        //System.out.println(result);
+        return result;
     }
 
     public static BigDecimal sqrt(BigDecimal val, int precision) {
