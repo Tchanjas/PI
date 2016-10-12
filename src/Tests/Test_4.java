@@ -1,7 +1,7 @@
 package Tests;
 
-import Chudnovski.Chudnosvky_Parallel;
-import Chudnovski.Chudnovski;
+import Chudnovsky.Chudnosvky_Parallel;
+import Chudnovsky.Chudnovsky;
 
 public class Test_4 {
 
@@ -10,7 +10,7 @@ public class Test_4 {
 
         System.out.println("--- Chudnovski Algorithm ---");
 
-        Chudnovski chud = new Chudnovski();
+        Chudnovsky chud = new Chudnovsky();
         Chudnosvky_Parallel chudp = new Chudnosvky_Parallel();
 
         double timeStampStart = System.currentTimeMillis();

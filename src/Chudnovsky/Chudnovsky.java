@@ -1,4 +1,4 @@
-package Chudnovski;
+package Chudnovsky;
 
 import Utilities.Maths;
 import Utilities.SharedFactorial;
@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 
 
-public class Chudnovski {
+public class Chudnovsky {
     
     MathContext context;
     static int sqrtPrec;

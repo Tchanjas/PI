@@ -1,7 +1,7 @@
 package UI;
 
-import Chudnovski.Chudnosvky_Parallel;
-import Chudnovski.Chudnovski;
+import Chudnovsky.Chudnosvky_Parallel;
+import Chudnovsky.Chudnovsky;
 import javax.swing.JOptionPane;
 
 public class UI extends javax.swing.JFrame {
@@ -180,7 +180,7 @@ public class UI extends javax.swing.JFrame {
             if (chkSeq.isSelected()) {
                 sumSeq = 0;
                 for (int i = 0; i < runs; i++) {
-                    Chudnovski chud = new Chudnovski();
+                    Chudnovsky chud = new Chudnovsky();
                     txtResult.setText(txtResult.getText() + "\n----- Chudnovsky Sequencial -----");
                     timeStampStart = System.currentTimeMillis();
                     txtResult.setText(txtResult.getText() + "\n Valor: " + chud.calcPI(iterations, precision).toString());

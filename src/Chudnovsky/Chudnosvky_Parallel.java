@@ -1,4 +1,4 @@
-package Chudnovski;
+package Chudnovsky;
 
 import Utilities.Maths;
 import Utilities.SharedBigDecimal;
