@@ -59,7 +59,7 @@ public class BBP_Parallel extends Thread {
         int procs = Runtime.getRuntime().availableProcessors();
         BBP_Parallel[] arrThr = new BBP_Parallel[procs];
         
-        // create a new thread for each number o processors available and start it
+        // create a new thread for each number of processors available and starts it
         for (int i = 0; i < arrThr.length; i++) {
             arrThr[i] = new BBP_Parallel();
             arrThr[i].start();
