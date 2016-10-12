@@ -1,6 +1,7 @@
 package Tests;
 
-import BBP.*;
+import BBP.BBP;
+import Chudnovsky.Chudnovsky;
 import static Methods.Leibniz.Leibniz;
 import static Methods.MonteCarlo.MonteCarlo;
 import static Methods.Wallis.Wallis;
@@ -37,9 +38,15 @@ public class Test_1 {
         
         BBP piBBP = new BBP();
         startTime = System.nanoTime();
-        System.out.print("BBP: " + piBBP.calcPI(1000, 1000)+ "\t\t\n | Execution Time: ");
+        System.out.print("BBP: " + piBBP.calcPI(16, 16)+ "\t\t | Execution Time: ");
         endTime = System.nanoTime();
-        System.out.print(endTime - startTime + " ns");
+        System.out.println(endTime - startTime + " ns");
+        
+        Chudnovsky chud = new Chudnovsky();
+        startTime = System.nanoTime();
+        System.out.print("Chudnovski: " + chud.calcPI(1, 16)+ "\t | Execution Time: ");
+        endTime = System.nanoTime();
+        System.out.println(endTime - startTime + " ns");
         System.out.println("");
     }    
 }

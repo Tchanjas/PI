@@ -12,9 +12,9 @@ public class Test_3 {
             factorial(i);
         }
         long endTime = System.currentTimeMillis();
-        System.out.println(endTime - startTime + " ms");
+        System.out.println("Factorial: \t\t\t" + (endTime - startTime) + " ms");
 
-        System.out.println("------------------");
+        System.out.println("--------------------------------------");
 
         SharedFactorial factorialHash = new SharedFactorial();
         
@@ -23,7 +23,7 @@ public class Test_3 {
             factorialHash.calc(i);
         }
         endTime = System.currentTimeMillis();
-        System.out.println(endTime - startTime + " ms");
+        System.out.println("Factorial com LinkedHashMap: \t" + (endTime - startTime) + " ms");
     }
 
     static BigDecimal factorial(BigDecimal number) {
