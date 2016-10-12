@@ -37,7 +37,7 @@ public class Test_1 {
         
         BBP piBBP = new BBP();
         startTime = System.nanoTime();
-        System.out.print("BBP: " + piBBP.BBP(1000)+ "\t\t\n | Execution Time: ");
+        System.out.print("BBP: " + piBBP.calcPI(1000, 1000)+ "\t\t\n | Execution Time: ");
         endTime = System.nanoTime();
         System.out.print(endTime - startTime + " ns");
         System.out.println("");

@@ -7,8 +7,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class BBP_Parallel extends Thread {
 
-    MathContext context;
-    static AtomicInteger iterations = new AtomicInteger(1000);
+    static MathContext context;
+    static AtomicInteger iterations;
 
     static SharedBigDecimal result = new SharedBigDecimal(0.0);
     static AtomicInteger next = new AtomicInteger(0);
@@ -20,11 +20,6 @@ public class BBP_Parallel extends Thread {
     BigDecimal six = BigDecimal.valueOf(6.0);
     BigDecimal eigth = BigDecimal.valueOf(8.0);
     BigDecimal sixteen = BigDecimal.valueOf(16.0);
-
-    public BBP_Parallel() {
-        this.context = new MathContext(1000);
-    }
-
     @Override
     public void run() {
         int k;
@@ -45,7 +40,9 @@ public class BBP_Parallel extends Thread {
         }
     }
 
-    public BigDecimal calcPi() {
+    public BigDecimal calcPi(int iterations, int precision) {
+        this.context = new MathContext(iterations);
+        this.iterations = new AtomicInteger(precision);
         int procs = Runtime.getRuntime().availableProcessors();
         BBP_Parallel[] arrThr = new BBP_Parallel[procs];
         for (int i = 0; i < arrThr.length; i++) {
@@ -61,6 +58,6 @@ public class BBP_Parallel extends Thread {
             }
         }
 
-        return result.getValue();
+        return result.getValue().round(context);
     }
 }

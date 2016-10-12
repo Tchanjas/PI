@@ -4,22 +4,23 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 
 public class BBP {
+    MathContext context;
+    BigDecimal CONST_1 = BigDecimal.valueOf(1);
+    BigDecimal CONST_2 = BigDecimal.valueOf(2);
+    BigDecimal CONST_4 = BigDecimal.valueOf(4);
+    BigDecimal CONST_5 = BigDecimal.valueOf(5);
+    BigDecimal CONST_6 = BigDecimal.valueOf(6);
+    BigDecimal sum = BigDecimal.ZERO;
     // Bailey–Borwein–Plouffe Formula in a sequencial execution
-    public BigDecimal BBP(int iterations){
+    public BigDecimal calcPI(int iterations, int precision){
         
-        BigDecimal sum = BigDecimal.ZERO;
-        MathContext context = new MathContext(1000);
-        BigDecimal CONST_1 = BigDecimal.valueOf(1);
-        BigDecimal CONST_2 = BigDecimal.valueOf(2);
-        BigDecimal CONST_4 = BigDecimal.valueOf(4);
-        BigDecimal CONST_5 = BigDecimal.valueOf(5);
-        BigDecimal CONST_6 = BigDecimal.valueOf(6);
+        context = new MathContext(precision);
         
         for (int i = 0; i < iterations; i++) {
             
-            BigDecimal CONST_8i = new BigDecimal(8*i, context);
+            BigDecimal CONST_8i = new BigDecimal(8*i);
             
-            BigDecimal P1 = CONST_1.divide(new BigDecimal(16).pow(i), context);
+            BigDecimal P1 = CONST_1.divide(new BigDecimal(16).pow(i, context), context);
             
             BigDecimal P2 = CONST_4.divide(CONST_8i.add(CONST_1), context);
             
@@ -29,10 +30,10 @@ public class BBP {
             
             BigDecimal P5 = CONST_1.divide(CONST_8i.add(CONST_6), context);
             
-            BigDecimal P = P2.subtract(P3).subtract(P4).subtract(P5).multiply(P1);
+            BigDecimal P = P2.subtract(P3).subtract(P4).subtract(P5).multiply(P1, context);
             sum = sum.add(P);
         }
         
-        return sum;
+        return sum.round(context);
     }
 }
