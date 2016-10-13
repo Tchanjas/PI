@@ -51,10 +51,10 @@ public class UI extends javax.swing.JFrame {
         setTitle("Pi Chudnosky");
         setResizable(false);
 
+        txtResult.setEditable(false);
         txtResult.setColumns(20);
         txtResult.setLineWrap(true);
         txtResult.setRows(5);
-        txtResult.setFocusable(false);
         jScrollPane1.setViewportView(txtResult);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
